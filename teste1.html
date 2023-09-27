@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Banner Animado</title>
+    <style>
+        #banner {
+            width: 100%;
+            height: 100px;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #mensagem {
+            position: absolute;
+            left: -200px; /* Inicialmente, a mensagem está fora da tela à esquerda */
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+    <div id="mensagem">Olá, mundo!</div>
+</div>
+
+<p>A 6ª edição do Campeonato Sul-Americano Sub-23 de Atletismo de 2014 foi organizado pela CONSUDATLE, para atletas com até 23 anos classificados como Sub-23.
+    As provas foram realizadas na Pista de Atletismo Darwin Piñeyrúa, em Montevidéu, no Uruguai, no período de 3 a 5 de outubro de 2014. 
+    Foram disputadas 44 provas com a presença de 310 atletas de 12 nacionalidades, com destaque para o Brasil que obteve 51 medalhas no total, sendo 18 de ouro.
+   </p>
+
+<img src="atletismo.png"">
+<script>
+    var mensagemElement = document.getElementById("mensagem");
+    var bannerWidth = document.getElementById("banner").offsetWidth;
+
+    function animarMensagem() {
+        var left = -200; // Inicializa a posição à esquerda da tela
+        var interval = setInterval(function() {
+            left += 5; // Move 5 pixels à direita a cada iteração
+            mensagemElement.style.left = left + "px";
+
+            // Verifica se a mensagem atingiu o final do banner
+            if (left >= bannerWidth) {
+                clearInterval(interval); // Para a animação
+                setTimeout(function() {
+                    mensagemElement.style.left = "-200px"; // Reinicia a mensagem à esquerda
+                    animarMensagem(); // Inicia a animação novamente
+                }, 1000); // Espera 1 segundo antes de reiniciar
+            }
+        }, 30); // Intervalo de 30 milissegundos para suavizar a animação
+    }
+
+    animarMensagem(); // Inicia a animação quando a página carrega
+</script>
+
+</body>
+</html>
