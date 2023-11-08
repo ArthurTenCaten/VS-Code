@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade IF</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Desconto</title>
 </head>
 <body>
-    <h1>Verificação de Custo:</h1>
 
-    <label for="custo">Digite seu Valor:</label>
-    <input type="text" id="custo">
-    <button onclick="calcularCusto()">Verificar Custo</button>
+    <h1>Calculadora de Desconto:</h1>
+    <label for="valor">Valor: </label>
+    <input type="number" id="valor">
+    <p>
+    <label for="taxadesconto">Taxa de Desconto: </label>
+    <input type="number" id="taxadesconto">
+</p>
+    <button onclick="calcularDesconto()">Verificar</button>
 
     <p id="resultado"></p>
 
     <script>
-        function calcularCusto() {
-            var custo = document.getElementById("custo").value;
-            if(custo <= 25) {
-                document.getElementById("resultado").innerHTML = "O valor é o suficiente!";
-            } else {
-                document.getElementById("resultado").innerHTML = "O valor não é o suficiente!";
-            } 
+        function calcularDesconto() {
+            var valor = parseFloat(document.getElementById("valor").value);
+            var taxadesconto = parseFloat(document.getElementById("taxadesconto").value);
 
+            if (!isNaN(valor) && !isNaN(taxadesconto)) {
+                var desconto = (valor * taxadesconto) / 100;
+                var valorfinal = valor - desconto;
+
+                var resultado = "Desconto: R$ " + desconto.toFixed(2) + "<br>Preço Final: " + valorfinal.toFixed(2);
+                document.getElementById("resultado").innerHTML = resultado;
+            }
         }
-    
+
     </script>
 </body>
 </html>
